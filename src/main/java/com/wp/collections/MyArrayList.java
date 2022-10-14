@@ -17,8 +17,8 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
-    public boolean isEmpty() {
-        return false;
+    public boolean isEmpty() {// CHECK: 14.10.2022
+        return size() == 0;
     }
 
     @Override
