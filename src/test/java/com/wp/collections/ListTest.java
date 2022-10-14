@@ -12,6 +12,13 @@ public class ListTest {
         this.elements = elements;
     }
 
+    private void addElementsToList(int howManyElements) {
+        for (int i = 0; i < howManyElements - 1; i++) {
+            elements.add("kot");
+        }
+        elements.add("sowa");
+    }
+
     @Test
     public void addShouldSaveOneElement() {
         addElementsToList(1);
@@ -31,11 +38,8 @@ public class ListTest {
         Assertions.assertEquals("sowa", elements.get(11));
         Assertions.assertEquals(12, elements.size());
     }
-
-    private void addElementsToList(int howManyElements) {
-        for (int i = 0; i < howManyElements - 1; i++) {
-            elements.add("kot");
-        }
-        elements.add("sowa");
+    @Test
+    public void listShouldBeEmpty() {
+        Assertions.assertTrue(elements.isEmpty());
     }
 }
