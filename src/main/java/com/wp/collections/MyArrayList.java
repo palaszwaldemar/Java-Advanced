@@ -5,7 +5,7 @@ import java.util.*;
 public class MyArrayList<T> implements List<T> {
     private T[] tab = (T[]) new Object[10];
 
-    @Override
+    @Override// CHECK: 15.10.2022 zrobione na lekcji
     public int size() {
         int count = 0;
         for (T t : tab) {
@@ -16,13 +16,18 @@ public class MyArrayList<T> implements List<T> {
         return count;
     }
 
-    @Override
-    public boolean isEmpty() {// CHECK: 14.10.2022
+    @Override// CHECK: 14.10.2022
+    public boolean isEmpty() {
         return size() == 0;
     }
 
-    @Override
+    @Override// CHECK: 15.10.2022
     public boolean contains(Object o) {
+        for (T t : tab) {
+            if (t.equals(o)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -31,9 +36,9 @@ public class MyArrayList<T> implements List<T> {
         return null;
     }
 
-    @Override
+    @Override// CHECK: 15.10.2022
     public Object[] toArray() {
-        return new Object[0];
+        return tab;
     }
 
     @Override
@@ -41,7 +46,7 @@ public class MyArrayList<T> implements List<T> {
         return null;
     }
 
-    @Override
+    @Override// CHECK: 15.10.2022 zrobione na lekcji
     public boolean add(T t) {
         if (tab.length == size()) {
             T[] additionalTab = (T[]) new Object[tab.length * 2];
@@ -59,9 +64,21 @@ public class MyArrayList<T> implements List<T> {
         return true;
     }
 
-    @Override
+    @Override// CHECK: 15.10.2022
     public boolean remove(Object o) {
-        return false;
+        T[] aditionalTab = (T[]) new Object[size()];
+        int indexOfTab = 0;
+        boolean wasRemoved = false;
+        for (T t : tab) {
+            if (!t.equals(o) || wasRemoved) {
+                aditionalTab[indexOfTab] = t;
+                indexOfTab++;
+            } else {
+                wasRemoved = true;
+            }
+        }
+        tab = aditionalTab;
+        return true;
     }
 
     @Override
@@ -89,34 +106,64 @@ public class MyArrayList<T> implements List<T> {
         return false;
     }
 
-    @Override
+    @Override// CHECK: 15.10.2022
     public void clear() {
-
+        tab = (T[]) new Object[10];
     }
 
-    @Override
+    @Override// CHECK: 15.10.2022
     public T get(int index) {
         return tab[index];
     }
 
-    @Override
+    @Override// CHECK: 15.10.2022
     public T set(int index, T element) {
-        return null;
+        tab[index] = element;
+        return tab[index];
     }
 
-    @Override
+    @Override// CHECK: 17.10.2022
     public void add(int index, T element) {
-
+        T[] aditionalTab = (T[]) new Object[tab.length + 1];
+        boolean wasAdd = false;
+        int tabIter = 0;
+        for (int i = 0; i < aditionalTab.length; i++) {
+            if (i != index || wasAdd) {
+                aditionalTab[i] = tab[tabIter];
+                tabIter++;
+            } else {
+                aditionalTab[i] = element;
+                wasAdd = true;
+            }
+        }
+        tab = aditionalTab;
     }
 
-    @Override
+    @Override// CHECK: 17.10.2022
     public T remove(int index) {
-        return null;
+        T removed = null;
+        int aditionalTabIter = 0;
+        T[] aditionalTab = (T[]) new Object[tab.length - 1];
+        for (int i = 0; i < tab.length; i++) {
+            if (i != index) {
+                aditionalTab[aditionalTabIter] = tab[i];
+                aditionalTabIter++;
+            } else {
+                removed = tab[i];
+            }
+        }
+        tab = aditionalTab;
+        return removed;
     }
 
-    @Override
+    @Override // CHECK: 17.10.2022
     public int indexOf(Object o) {
-        return 0;
+        for (int i = 0; i < tab.length; i++) {
+            if (tab[i] == o) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
