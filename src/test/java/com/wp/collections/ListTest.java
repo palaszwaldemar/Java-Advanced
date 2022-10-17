@@ -127,8 +127,8 @@ public class ListTest {
     @Test
     public void indexOfShouldReturnIndexOfObject() {
         addDifferentsElementsToList(15);
-        Assertions.assertEquals(-1, elements.indexOf("15"));
-        Assertions.assertEquals(0, elements.indexOf("0"));// CHECK: 17.10.2022 dlaczego nie działa?
+        Assertions.assertEquals(-1, elements.indexOf("15")); // CHECK: 17.10.2022 dlaczego nie działa?
+        Assertions.assertEquals(0, elements.indexOf("0"));
         Assertions.assertEquals(10, elements.indexOf("10"));
         Assertions.assertEquals(14, elements.indexOf("14"));
     }
