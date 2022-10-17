@@ -46,13 +46,13 @@ public class ListTest {
         Assertions.assertEquals(12, elements.size());
     }
 
-    @Test
+    @Test // CHECK: 15.10.2022
     public void listShouldBeEmpty() {
         Assertions.assertTrue(elements.isEmpty());
-    }// CHECK: 15.10.2022
+    }
 
-    @Test
-    public void removeShouldDeleteObject() {// CHECK: 15.10.2022
+    @Test // CHECK: 15.10.2022
+    public void removeShouldDeleteObject() {
         addManyTheSameElementsToList(10);
         Assertions.assertEquals(10, elements.size());
         elements.remove("1");
@@ -60,24 +60,24 @@ public class ListTest {
         Assertions.assertEquals(9, elements.size());
     }
 
-    @Test
-    public void clearShouldRemoveEverythingObjects() {// CHECK: 15.10.2022
+    @Test // CHECK: 15.10.2022
+    public void clearShouldRemoveEverythingObjects() {
         addManyTheSameElementsToList(30);
         Assertions.assertFalse(elements.isEmpty());
         elements.clear();
         Assertions.assertTrue(elements.isEmpty());// CHECK: 17.10.2022 czemu podświetla?
     }
 
-    @Test
-    public void getShouldGetObjectOnSpecificIndex() {// CHECK: 15.10.2022
+    @Test // CHECK: 15.10.2022
+    public void getShouldGetObjectOnSpecificIndex() {
         addManyTheSameElementsToList(10);
         Assertions.assertEquals("0", elements.get(0));
         Assertions.assertEquals("1", elements.get(elements.size() - 1));
         Assertions.assertEquals("0", elements.get(5));
     }
 
-    @Test
-    public void containsShouldCheckIfObjectIsInList() {// CHECK: 15.10.2022
+    @Test // CHECK: 15.10.2022
+    public void containsShouldCheckIfObjectIsInList() {
         addManyTheSameElementsToList(10);
         Assertions.assertTrue(elements.contains("0"));
         Assertions.assertTrue(elements.contains("1"));
@@ -86,8 +86,8 @@ public class ListTest {
 
     }
 
-    @Test
-    public void toArrayShouldReturnArray() { // CHECK: 15.10.2022
+    @Test // CHECK: 15.10.2022
+    public void toArrayShouldReturnArray() {
         addManyTheSameElementsToList(10);
         String[] array = new String[10];
         for (int i = 0; i < array.length - 1; i++) {
@@ -100,14 +100,14 @@ public class ListTest {
         Assertions.assertEquals(array[array.length - 1], elements.toArray()[elements.toArray().length - 1]);
     }
 
-    @Test
-    public void setShouldSetObjectInSpecificIndex() {// CHECK: 17.10.2022 dlaczego nie działa na zwykłej ArrayLiście
+    @Test // CHECK: 17.10.2022 dlaczego nie działa na zwykłej ArrayLiście
+    public void setShouldSetObjectInSpecificIndex() {
         addManyTheSameElementsToList(10);
         Assertions.assertEquals("50", elements.set(3, "50"));
     }
 
-    @Test
-    public void addShouldAddElementOnSpecificPosition() {// CHECK: 17.10.2022
+    @Test // CHECK: 17.10.2022
+    public void addShouldAddElementOnSpecificPosition() {
         addDifferentsElementsToList(10);
         elements.add(5, "100");
         Assertions.assertEquals("100", elements.get(5));
@@ -116,20 +116,20 @@ public class ListTest {
         Assertions.assertEquals("9", elements.get(elements.size() - 1));
     }
 
-    @Test
-    public void removeShouldDeleteElementOnSpecificIndex() {// CHECK: 17.10.2022
+    @Test // CHECK: 17.10.2022
+    public void removeShouldDeleteElementOnSpecificIndex() {
         addDifferentsElementsToList(20);
         Assertions.assertEquals("19", elements.remove(19));
         Assertions.assertEquals("5", elements.remove(5));
         Assertions.assertEquals("0", elements.remove(0));
     }
 
-    @Test
-    public void indexOfShouldReturnIndexOfObject() {
+    @Test // CHECK: 17.10.2022
+    public void indexOfShouldReturnIndexOfObjectOrMinusOne() {
         addDifferentsElementsToList(15);
-        Assertions.assertEquals(-1, elements.indexOf("15")); // CHECK: 17.10.2022 dlaczego nie działa?
         Assertions.assertEquals(0, elements.indexOf("0"));
         Assertions.assertEquals(10, elements.indexOf("10"));
         Assertions.assertEquals(14, elements.indexOf("14"));
+        Assertions.assertEquals(-1, elements.indexOf("50"));
     }
 }
