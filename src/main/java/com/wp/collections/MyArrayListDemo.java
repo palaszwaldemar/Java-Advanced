@@ -27,4 +27,4 @@ public class MyArrayListDemo {
 //- interjesy nie maja pol ani konstruktorow*
 //- interfejsy maja tylko metody abstrakcyjne*
 
-//* - w programowaniu finkcyjnym interfejsy lamia te zasady od nowszych wersji javy
+//* - w programowaniu funkcyjnym interfejsy łamią te zasady od nowszych wersji javy
