@@ -159,6 +159,9 @@ public class MyArrayList<T> implements List<T> {
     @Override // CHECK: 17.10.2022
     public int indexOf(Object o) {
         for (int i = 0; i < tab.length; i++) {
+            if (tab[i] == null) {
+                return -1;
+            }
             if (tab[i].equals(o)) {
                 return i;
             }
