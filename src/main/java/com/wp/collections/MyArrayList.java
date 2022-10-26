@@ -118,8 +118,9 @@ public class MyArrayList<T> implements List<T> {
 
     @Override// CHECK: 15.10.2022
     public T set(int index, T element) {
+        T previousElement = tab[index];
         tab[index] = element;
-        return tab[index];
+        return previousElement;
     }
 
     @Override// CHECK: 17.10.2022

@@ -2,7 +2,6 @@ package com.wp.collections;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 
 public class ListTest {
@@ -27,8 +26,11 @@ public class ListTest {
 
     @Test
     public void addShouldSaveOneElement() {
+
         addManyTheSameElementsToList(1);
+
         Assertions.assertEquals("1", elements.get(0));
+        Assertions.assertFalse(elements.isEmpty());
     }
 
     @Test
@@ -53,18 +55,27 @@ public class ListTest {
 
     @Test // CHECK: 15.10.2022
     public void removeShouldDeleteObject() {
+        //given
         addManyTheSameElementsToList(10);
-        Assertions.assertEquals(10, elements.size());
-        elements.remove("1");
-        Assertions.assertEquals("0", elements.get(elements.size() - 1));
+        String beforeLast = "0";
+        String last = getLastElement();
+        //when
+        elements.remove(last);
+        //then
+        Assertions.assertEquals(beforeLast,getLastElement()) ;
         Assertions.assertEquals(9, elements.size());
+    }
+
+     private String getLastElement() {
+       return elements.get(elements.size() - 1);
     }
 
     @Test // CHECK: 15.10.2022
     public void clearShouldRemoveEverythingObjects() {
         addManyTheSameElementsToList(30);
-        Assertions.assertFalse(elements.isEmpty());
+
         elements.clear();
+
         Assertions.assertTrue(elements.isEmpty());// CHECK: 17.10.2022 czemu podświetla?
     }
 
@@ -93,17 +104,15 @@ public class ListTest {
         for (int i = 0; i < array.length - 1; i++) {
             array[i] = 0 + "";
         }
-        array[9] = 1 + "";
-        Assertions.assertEquals(array.length, elements.toArray().length);
-        Assertions.assertEquals(array[0], elements.toArray()[0]);
-        Assertions.assertEquals(array[5], elements.toArray()[5]);
-        Assertions.assertEquals(array[array.length - 1], elements.toArray()[elements.toArray().length - 1]);
+        array[9] = "1";
+        Assertions.assertArrayEquals(array, elements.toArray());
     }
 
     @Test // CHECK: 17.10.2022 dlaczego nie działa na zwykłej ArrayLiście
     public void setShouldSetObjectInSpecificIndex() {
         addManyTheSameElementsToList(10);
-        Assertions.assertEquals("50", elements.set(3, "50"));
+        Assertions.assertEquals("0", elements.set(3, "50"));
+        Assertions.assertEquals("50", elements.get(3));
     }
 
     @Test // CHECK: 17.10.2022
