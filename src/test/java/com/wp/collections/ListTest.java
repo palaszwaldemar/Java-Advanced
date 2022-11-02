@@ -138,7 +138,6 @@ public class ListTest {
         elements.add(5, "100");
 
         Assertions.assertEquals("100", elements.get(5));
-        Assertions.assertEquals(11, elements.size());
         Assertions.assertEquals("0", elements.get(0));
         Assertions.assertEquals("9", elements.get(elements.size() - 1));
     }
