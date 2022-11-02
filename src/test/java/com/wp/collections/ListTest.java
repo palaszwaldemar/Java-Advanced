@@ -35,14 +35,18 @@ public class ListTest {
 
     @Test
     public void addShouldSaveManyElements() {
+
         addManyTheSameElementsToList(3);
+
         Assertions.assertEquals("1", elements.get(2));
         Assertions.assertEquals(3, elements.size());
     }
 
     @Test
     public void addShouldSaveVeryManyElements() {
+
         addManyTheSameElementsToList(12);
+
         Assertions.assertEquals("0", elements.get(10));
         Assertions.assertEquals("1", elements.get(11));
         Assertions.assertEquals(12, elements.size());
@@ -67,11 +71,13 @@ public class ListTest {
     }
 
      private String getLastElement() {
+
        return elements.get(elements.size() - 1);
     }
 
     @Test // CHECK: 15.10.2022
     public void clearShouldRemoveEverythingObjects() {
+
         addManyTheSameElementsToList(30);
 
         elements.clear();
@@ -81,7 +87,9 @@ public class ListTest {
 
     @Test // CHECK: 15.10.2022
     public void getShouldGetObjectOnSpecificIndex() {
+
         addManyTheSameElementsToList(10);
+
         Assertions.assertEquals("0", elements.get(0));
         Assertions.assertEquals("1", elements.get(elements.size() - 1));
         Assertions.assertEquals("0", elements.get(5));
@@ -89,7 +97,9 @@ public class ListTest {
 
     @Test // CHECK: 15.10.2022
     public void containsShouldCheckIfObjectIsInList() {
+
         addManyTheSameElementsToList(10);
+
         Assertions.assertTrue(elements.contains("0"));
         Assertions.assertTrue(elements.contains("1"));
         Assertions.assertFalse(elements.contains("-1"));
@@ -99,26 +109,34 @@ public class ListTest {
 
     @Test // CHECK: 15.10.2022
     public void toArrayShouldReturnArray() {
+
         addManyTheSameElementsToList(10);
+
         String[] array = new String[10];
         for (int i = 0; i < array.length - 1; i++) {
             array[i] = 0 + "";
         }
         array[9] = "1";
+
         Assertions.assertArrayEquals(array, elements.toArray());
     }
 
     @Test // CHECK: 17.10.2022 dlaczego nie działa na zwykłej ArrayLiście
     public void setShouldSetObjectInSpecificIndex() {
+
         addManyTheSameElementsToList(10);
+
         Assertions.assertEquals("0", elements.set(3, "50"));
         Assertions.assertEquals("50", elements.get(3));
     }
 
     @Test // CHECK: 17.10.2022
     public void addShouldAddElementOnSpecificPosition() {
+
         addDifferentsElementsToList(10);
+
         elements.add(5, "100");
+
         Assertions.assertEquals("100", elements.get(5));
         Assertions.assertEquals(11, elements.size());
         Assertions.assertEquals("0", elements.get(0));
@@ -127,7 +145,9 @@ public class ListTest {
 
     @Test // CHECK: 17.10.2022
     public void removeShouldDeleteElementOnSpecificIndex() {
+
         addDifferentsElementsToList(20);
+
         Assertions.assertEquals("19", elements.remove(19));
         Assertions.assertEquals("5", elements.remove(5));
         Assertions.assertEquals("0", elements.remove(0));
@@ -135,7 +155,9 @@ public class ListTest {
 
     @Test // CHECK: 17.10.2022
     public void indexOfShouldReturnIndexOfObjectOrMinusOne() {
+
         addDifferentsElementsToList(15);
+
         Assertions.assertEquals(0, elements.indexOf("0"));
         Assertions.assertEquals(10, elements.indexOf("10"));
         Assertions.assertEquals(14, elements.indexOf("14"));
