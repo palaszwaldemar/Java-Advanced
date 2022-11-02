@@ -121,7 +121,7 @@ public class ListTest {
         Assertions.assertArrayEquals(array, elements.toArray());
     }
 
-    @Test // CHECK: 17.10.2022 dlaczego nie działa na zwykłej ArrayLiście
+    @Test // CHECK: 17.10.2022
     public void setShouldSetObjectInSpecificIndex() {
 
         addManyTheSameElementsToList(10);
