@@ -52,12 +52,12 @@ public class ListTest {
         Assertions.assertEquals(12, elements.size());
     }
 
-    @Test // CHECK: 15.10.2022
+    @Test
     public void listShouldBeEmpty() {
         Assertions.assertTrue(elements.isEmpty());
     }
 
-    @Test // CHECK: 15.10.2022
+    @Test
     public void removeShouldDeleteObject() {
         //given
         addManyTheSameElementsToList(10);
@@ -68,6 +68,7 @@ public class ListTest {
         //then
         Assertions.assertEquals(beforeLast,getLastElement()) ;
         Assertions.assertEquals(9, elements.size());
+        // TODO: 03.11.2022 sprawdzić usunięcie wcześniejszych elementów
     }
 
      private String getLastElement() {
@@ -75,17 +76,17 @@ public class ListTest {
        return elements.get(elements.size() - 1);
     }
 
-    @Test // CHECK: 15.10.2022
-    public void clearShouldRemoveEverythingObjects() {
+    @Test
+    public void clearShouldRemoveEveryObjects() {
 
         addManyTheSameElementsToList(30);
 
         elements.clear();
 
-        Assertions.assertTrue(elements.isEmpty());// CHECK: 17.10.2022 czemu podświetla?
+        Assertions.assertTrue(elements.isEmpty());
     }
 
-    @Test // CHECK: 15.10.2022
+    @Test
     public void getShouldGetObjectOnSpecificIndex() {
 
         addManyTheSameElementsToList(10);
@@ -95,7 +96,7 @@ public class ListTest {
         Assertions.assertEquals("0", elements.get(5));
     }
 
-    @Test // CHECK: 15.10.2022
+    @Test
     public void containsShouldCheckIfObjectIsInList() {
 
         addManyTheSameElementsToList(10);
@@ -107,7 +108,7 @@ public class ListTest {
 
     }
 
-    @Test // CHECK: 15.10.2022
+    @Test
     public void toArrayShouldReturnArray() {
 
         addManyTheSameElementsToList(10);
@@ -121,7 +122,7 @@ public class ListTest {
         Assertions.assertArrayEquals(array, elements.toArray());
     }
 
-    @Test // CHECK: 17.10.2022
+    @Test
     public void setShouldSetObjectInSpecificIndex() {
 
         addManyTheSameElementsToList(10);
@@ -130,7 +131,7 @@ public class ListTest {
         Assertions.assertEquals("50", elements.get(3));
     }
 
-    @Test // CHECK: 17.10.2022
+    @Test
     public void addShouldAddElementOnSpecificPosition() {
 
         addDifferentsElementsToList(10);
@@ -142,7 +143,7 @@ public class ListTest {
         Assertions.assertEquals("9", elements.get(elements.size() - 1));
     }
 
-    @Test // CHECK: 17.10.2022
+    @Test
     public void removeShouldDeleteElementOnSpecificIndex() {
 
         addDifferentsElementsToList(20);
@@ -152,7 +153,7 @@ public class ListTest {
         Assertions.assertEquals("0", elements.remove(0));
     }
 
-    @Test // CHECK: 17.10.2022
+    @Test
     public void indexOfShouldReturnIndexOfObjectOrMinusOne() {
 
         addDifferentsElementsToList(15);

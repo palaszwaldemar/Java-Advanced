@@ -5,7 +5,7 @@ import java.util.*;
 public class MyArrayList<T> implements List<T> {
     private T[] tab = (T[]) new Object[10];
 
-    @Override// CHECK: 15.10.2022 zrobione na lekcji
+    @Override
     public int size() {
         int count = 0;
         for (T t : tab) {
@@ -16,12 +16,12 @@ public class MyArrayList<T> implements List<T> {
         return count;
     }
 
-    @Override// CHECK: 14.10.2022
+    @Override
     public boolean isEmpty() {
         return size() == 0;
     }
 
-    @Override// CHECK: 15.10.2022
+    @Override
     public boolean contains(Object o) {
         for (T t : tab) {
             if (t.equals(o)) {
@@ -36,7 +36,7 @@ public class MyArrayList<T> implements List<T> {
         return null;
     }
 
-    @Override// CHECK: 15.10.2022
+    @Override // TODO: 03.11.2022 poprawić. nie może zwaracać tablicy z nulami. Test  tej metody też do poprawy
     public Object[] toArray() {
         return tab;
     }
@@ -46,7 +46,7 @@ public class MyArrayList<T> implements List<T> {
         return null;
     }
 
-    @Override// CHECK: 15.10.2022 zrobione na lekcji
+    @Override
     public boolean add(T t) {
         if (tab.length == size()) {
             T[] additionalTab = (T[]) new Object[tab.length * 2];
@@ -64,7 +64,7 @@ public class MyArrayList<T> implements List<T> {
         return true;
     }
 
-    @Override// CHECK: 15.10.2022
+    @Override
     public boolean remove(Object o) {
         T[] aditionalTab = (T[]) new Object[size()];
         int indexOfTab = 0;
@@ -106,24 +106,24 @@ public class MyArrayList<T> implements List<T> {
         return false;
     }
 
-    @Override// CHECK: 15.10.2022
+    @Override
     public void clear() {
         tab = (T[]) new Object[10];
     }
 
-    @Override// CHECK: 15.10.2022
+    @Override
     public T get(int index) {
         return tab[index];
     }
 
-    @Override// CHECK: 15.10.2022
+    @Override
     public T set(int index, T element) {
         T previousElement = tab[index];
         tab[index] = element;
         return previousElement;
     }
 
-    @Override// CHECK: 17.10.2022
+    @Override // TODO: 03.11.2022 zmienić bez dodawania drugiej tablicy. Przeszukać od końca
     public void add(int index, T element) {
         T[] aditionalTab = (T[]) new Object[tab.length + 1];
         boolean wasAdd = false;
@@ -140,7 +140,7 @@ public class MyArrayList<T> implements List<T> {
         tab = aditionalTab;
     }
 
-    @Override// CHECK: 17.10.2022
+    @Override // TODO: 03.11.2022 zmienić tak jak wyżej
     public T remove(int index) {
         T removed = null;
         int aditionalTabIter = 0;
@@ -157,7 +157,7 @@ public class MyArrayList<T> implements List<T> {
         return removed;
     }
 
-    @Override // CHECK: 17.10.2022
+    @Override
     public int indexOf(Object o) {
         for (int i = 0; i < tab.length; i++) {
             if (tab[i] == null) {
