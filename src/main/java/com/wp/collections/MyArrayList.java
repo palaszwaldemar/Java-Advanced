@@ -98,11 +98,19 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
+        for (Object o : c) {
+            remove(o);
+        }
         return false;
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
+        for (Object o : toArray()){
+            if (!c.contains(o)) {
+                remove(o);
+            }
+        }
         return false;
     }
 
