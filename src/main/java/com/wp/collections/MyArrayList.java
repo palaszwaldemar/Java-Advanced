@@ -65,16 +65,13 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
-    public boolean remove(Object o) {
-        T[] aditionalTab = (T[]) new Object[size()];
-        int indexOfTab = 0;
-        boolean wasRemoved = false;
+    public boolean remove(Object o) {// CHECK : 04.11.2022 sprawdzić
+        T[] aditionalTab = (T[]) new Object[tab.length - 1];
+        int iterAditionalTab = 0;
         for (T t : tab) {
-            if (!t.equals(o) || wasRemoved) {
-                aditionalTab[indexOfTab] = t;
-                indexOfTab++;
-            } else {
-                wasRemoved = true;
+            if (!t.equals(o)) {
+                aditionalTab[iterAditionalTab] = t;
+                iterAditionalTab++;
             }
         }
         tab = aditionalTab;
