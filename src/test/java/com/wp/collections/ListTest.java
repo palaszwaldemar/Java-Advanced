@@ -74,6 +74,13 @@ public class ListTest {
         elements.remove("10");
         //then
         Assertions.assertEquals("9", elements.get(elements.size() - 1));
+        //when
+        List<String> aditionalList = elements;
+        elements.remove("100");
+        //then
+        for (int i = 0; i < elements.size(); i++) {
+            Assertions.assertEquals(aditionalList.get(i), elements.get(i));
+        }
     }
 
     @Test
