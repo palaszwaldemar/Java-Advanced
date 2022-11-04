@@ -2,6 +2,7 @@ package com.wp.collections;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import java.util.List;
 
 public class ListTest {
@@ -57,23 +58,22 @@ public class ListTest {
         Assertions.assertTrue(elements.isEmpty());
     }
 
-    @Test
+    @Test // CHECK : 04.11.2022 sprawdzić
     public void removeShouldDeleteObject() {
         //given
-        addManyTheSameElementsToList(10);
-        String beforeLast = "0";
-        String last = getLastElement();
+        addDifferentsElementsToList(10);
         //when
-        elements.remove(last);
+        elements.remove("4");
         //then
-        Assertions.assertEquals(beforeLast,getLastElement()) ;
-        Assertions.assertEquals(9, elements.size());
-        // TODO: 03.11.2022 sprawdzić usunięcie wcześniejszych elementów
-    }
-
-     private String getLastElement() {
-
-       return elements.get(elements.size() - 1);
+        Assertions.assertEquals("5", elements.get(4));
+        //when
+        elements.remove("0");
+        //then
+        Assertions.assertEquals("1", elements.get(0));
+        //when
+        elements.remove("10");
+        //then
+        Assertions.assertEquals("9", elements.get(elements.size() - 1));
     }
 
     @Test
