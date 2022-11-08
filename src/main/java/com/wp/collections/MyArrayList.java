@@ -105,7 +105,7 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        for (Object o : toArray()){
+        for (Object o : toArray()) {
             if (!c.contains(o)) {
                 remove(o);
             }
