@@ -4,6 +4,7 @@ import java.util.*;
 
 public class MyArrayList<T> implements List<T> {
     private T[] tab = (T[]) new Object[10];
+    // CHECK : 08.11.2022 nie działa wyświetlanie danych w liście po pętli
 
     @Override
     public int size() {
@@ -37,6 +38,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override // TODO: 03.11.2022 poprawić. nie może zwaracać tablicy z nulami. Test  tej metody też do poprawy
+    // CHECK : 08.11.2022 dlaczego nie może zwracać tablicy z nulami?
     public Object[] toArray() {
         return tab;
     }
@@ -129,6 +131,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override // TODO: 03.11.2022 zmienić bez dodawania drugiej tablicy. Przeszukać od końca
+    // CHECK : 08.11.2022 nie wiem jak zrobić bez dodawania dodatkowej tablicy
     public void add(int index, T element) {
         T[] aditionalTab = (T[]) new Object[tab.length + 1];
         boolean wasAdd = false;
@@ -146,6 +149,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override // TODO: 03.11.2022 zmienić tak jak wyżej
+    // CHECK : 08.11.2022 jeżeli zorobię bez dodatkowej tablicy to na końcu zostanie null
     public T remove(int index) {
         T removed = null;
         int aditionalTabIter = 0;
