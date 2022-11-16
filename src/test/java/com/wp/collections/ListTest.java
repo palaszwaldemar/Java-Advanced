@@ -170,4 +170,26 @@ public class ListTest {
         Assertions.assertEquals(14, elements.indexOf("14"));
         Assertions.assertEquals(-1, elements.indexOf("50"));
     }
+
+    @Test
+    public void sizeShouldReturnSizeOfList() {
+        //given
+        addManyTheSameElementsToList(10);
+        //when
+        //then
+        Assertions.assertEquals(10, elements.size());
+
+    }
+
+    @Test // TODO: 10.11.2022 wrócić po przerobieniu streamów
+    public void ifGetUseValuesOutsideSizeThenThrowException() {
+        addManyTheSameElementsToList(3);
+
+        try {
+            elements.get(10);
+            Assertions.fail("Nie rzucono wyjątku");
+        } catch (IndexOutOfBoundsException e) {
+            //zdany test
+        }
+    }
 }
