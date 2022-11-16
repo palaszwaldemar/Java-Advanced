@@ -39,6 +39,8 @@ public class ListTest {
 
         addManyTheSameElementsToList(3);
 
+        Assertions.assertEquals("0", elements.get(0));
+        Assertions.assertEquals("0", elements.get(1));
         Assertions.assertEquals("1", elements.get(2));
         Assertions.assertEquals(3, elements.size());
     }
@@ -48,8 +50,9 @@ public class ListTest {
 
         addDifferentElementsToList(12);
 
-        Assertions.assertEquals("0", elements.get(10));
-        Assertions.assertEquals("1", elements.get(11));
+        Assertions.assertEquals("0", elements.get(0));
+        Assertions.assertEquals("5", elements.get(5));
+        Assertions.assertEquals("11", elements.get(11));
         Assertions.assertEquals(12, elements.size());
     }
 
@@ -71,16 +74,9 @@ public class ListTest {
         //then
         Assertions.assertEquals("1", elements.get(0));
         //when
-        elements.remove("10");
+        elements.remove("9");
         //then
-        Assertions.assertEquals("9", elements.get(elements.size() - 1));
-        //when
-        List<String> aditionalList = elements;
-        elements.remove("100");
-        //then
-        for (int i = 0; i < elements.size(); i++) {
-            Assertions.assertEquals(aditionalList.get(i), elements.get(i));
-        }
+        Assertions.assertEquals("8", elements.get(elements.size() - 1));
     }
 
     @Test
@@ -99,8 +95,8 @@ public class ListTest {
         addManyTheSameElementsToList(10);
 
         Assertions.assertEquals("0", elements.get(0));
-        Assertions.assertEquals("1", elements.get(elements.size() - 1));
         Assertions.assertEquals("0", elements.get(5));
+        Assertions.assertEquals("1", elements.get(elements.size() - 1));
     }
 
     @Test
@@ -145,7 +141,9 @@ public class ListTest {
 
         elements.add(5, "100");
 
+        Assertions.assertEquals("4", elements.get(4));
         Assertions.assertEquals("100", elements.get(5));
+        Assertions.assertEquals("5", elements.get(6));
         Assertions.assertEquals("0", elements.get(0));
         Assertions.assertEquals("9", elements.get(elements.size() - 1));
     }
@@ -158,6 +156,10 @@ public class ListTest {
         Assertions.assertEquals("19", elements.remove(19));
         Assertions.assertEquals("5", elements.remove(5));
         Assertions.assertEquals("0", elements.remove(0));
+        Assertions.assertEquals(17, elements.size());
+        Assertions.assertEquals("18", elements.get(elements.size() - 1));
+        Assertions.assertEquals("7", elements.get(5));
+        Assertions.assertEquals("1", elements.get(0));
     }
 
     @Test
