@@ -1,6 +1,7 @@
 package com.wp.collections;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class MyArrayListDemo {
@@ -9,8 +10,21 @@ public class MyArrayListDemo {
         List<String> text1 = new MyArrayList<>();
         text1.add("kot");
         text.add("pies");
+        text.add("lis");
+        text.add("osa");
+        text.add(null);
         System.out.println(text1.get(0));
         System.out.println(text.get(0));
+        for (String s : text1) {
+            System.out.println(s);
+        }
+
+        Iterator<String> iterator = text.iterator();
+/*
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next() + " ");
+        }
+*/
     }
 }
 
