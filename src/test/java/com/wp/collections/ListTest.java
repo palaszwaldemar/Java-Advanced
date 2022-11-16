@@ -19,7 +19,7 @@ public class ListTest {
         elements.add(1 + "");
     }
 
-    private void addDifferentsElementsToList(int howManyElements) {
+    private void addDifferentElementsToList(int howManyElements) {
         for (int i = 0; i < howManyElements; i++) {
             elements.add(i + "");
         }
@@ -35,7 +35,7 @@ public class ListTest {
     }
 
     @Test
-    public void addShouldSaveManyElements() {
+    public void addShouldSaveMoreElements() {
 
         addManyTheSameElementsToList(3);
 
@@ -46,7 +46,7 @@ public class ListTest {
     @Test
     public void addShouldSaveVeryManyElements() {
 
-        addManyTheSameElementsToList(12);
+        addDifferentElementsToList(12);
 
         Assertions.assertEquals("0", elements.get(10));
         Assertions.assertEquals("1", elements.get(11));
@@ -58,10 +58,10 @@ public class ListTest {
         Assertions.assertTrue(elements.isEmpty());
     }
 
-    @Test // CHECK : 04.11.2022 sprawdzić
+    @Test
     public void removeShouldDeleteObject() {
         //given
-        addDifferentsElementsToList(10);
+        addDifferentElementsToList(10);
         //when
         elements.remove("4");
         //then
@@ -141,7 +141,7 @@ public class ListTest {
     @Test
     public void addShouldAddElementOnSpecificPosition() {
 
-        addDifferentsElementsToList(10);
+        addDifferentElementsToList(10);
 
         elements.add(5, "100");
 
@@ -153,7 +153,7 @@ public class ListTest {
     @Test
     public void removeShouldDeleteElementOnSpecificIndex() {
 
-        addDifferentsElementsToList(20);
+        addDifferentElementsToList(20);
 
         Assertions.assertEquals("19", elements.remove(19));
         Assertions.assertEquals("5", elements.remove(5));
@@ -163,7 +163,7 @@ public class ListTest {
     @Test
     public void indexOfShouldReturnIndexOfObjectOrMinusOne() {
 
-        addDifferentsElementsToList(15);
+        addDifferentElementsToList(15);
 
         Assertions.assertEquals(0, elements.indexOf("0"));
         Assertions.assertEquals(10, elements.indexOf("10"));
