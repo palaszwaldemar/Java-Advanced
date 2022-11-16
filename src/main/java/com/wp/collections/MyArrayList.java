@@ -4,43 +4,38 @@ import java.util.*;
 
 public class MyArrayList<T> implements List<T> {
     private T[] tab = (T[]) new Object[10];
-    // CHECK : 08.11.2022 nie działa wyświetlanie danych w liście po pętli
+    private int size = 0;
 
     @Override
     public int size() {
-        int count = 0;
-        for (T t : tab) {
-            if (t != null) {
-                count++;
-            }
-        }
-        return count;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return size() == 0;
+        return size == 0;
     }
 
-    @Override
+    @Override // CHECK : 16.11.2022 sprawdzić
     public boolean contains(Object o) {
-        for (T t : tab) {
-            if (t.equals(o)) {
+        for (int i = 0; i < size; i++) {
+            if (tab[i].equals(o)) {
                 return true;
             }
         }
         return false;
     }
 
-    @Override
+    @Override // TODO: 15.11.2022 dokończyć
     public Iterator<T> iterator() {
         return null;
     }
 
-    @Override // TODO: 03.11.2022 poprawić. nie może zwaracać tablicy z nulami. Test  tej metody też do poprawy
-    // CHECK : 08.11.2022 dlaczego nie może zwracać tablicy z nulami?
+    @Override // CHECK : 16.11.2022 sprawdzić
     public Object[] toArray() {
-        return tab;
+        Object[] aditionalTab = new Object[size];
+        System.arraycopy(tab, 0, aditionalTab, 0, size);
+        return aditionalTab;
     }
 
     @Override
@@ -49,34 +44,48 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
-    public boolean add(T t) {
-        if (tab.length == size()) {
+    public boolean add(T t) {// CHECK : 15.11.2022 w wersji wyszarzonej nie działało. Czy teraz jest dobrze?
+        /*for (int i = 0; i < tab.length; i++) {
+            if (tab[i] == null) {
+                tab[i] = t;
+                size++;
+                return true;// jeżeli znajdzie nulla to następny if się nie wykona i tablica nie zostanie zwiększona
+            }
+        }
+        if (tab.length == size) {
             T[] additionalTab = (T[]) new Object[tab.length * 2];
             for (int i = 0; i < tab.length; i++) {
                 additionalTab[i] = tab[i];
             }
             tab = additionalTab;
         }
+        return true;*/
+
+        T[] additionalTab = (T[]) new Object[tab.length * 2];
         for (int i = 0; i < tab.length; i++) {
             if (tab[i] == null) {
                 tab[i] = t;
+                size++;
+                if (tab.length == size) {
+                    System.arraycopy(tab, 0, additionalTab, 0, tab.length);
+                    tab = additionalTab;
+                }
                 return true;
             }
         }
         return true;
     }
 
-    @Override
-    public boolean remove(Object o) {// CHECK : 04.11.2022 sprawdzić
-        T[] aditionalTab = (T[]) new Object[tab.length - 1];
-        int iterAditionalTab = 0;
-        for (T t : tab) {
-            if (!t.equals(o)) {
-                aditionalTab[iterAditionalTab] = t;
-                iterAditionalTab++;
+    @Override // CHECK : 16.11.2022 sprwadzić
+    public boolean remove(Object o) {
+        size--;
+        boolean wasAdd = false;
+        for (int i = 0; i < size; i++) {
+            if (tab[i].equals(o) || wasAdd) {
+                tab[i] = tab[i + 1];
+                wasAdd = true;
             }
         }
-        tab = aditionalTab;
         return true;
     }
 
@@ -116,11 +125,15 @@ public class MyArrayList<T> implements List<T> {
     @Override
     public void clear() {
         tab = (T[]) new Object[10];
+        size = 0;
     }
 
-    @Override
+    @Override // CHECK : 16.11.2022 dodano rzucenie wyjątku
     public T get(int index) {
-        return tab[index];
+        if (tab[index] != null) {
+            return tab[index];
+        }
+        throw new IndexOutOfBoundsException();
     }
 
     @Override
@@ -130,39 +143,29 @@ public class MyArrayList<T> implements List<T> {
         return previousElement;
     }
 
-    @Override // TODO: 03.11.2022 zmienić bez dodawania drugiej tablicy. Przeszukać od końca
-    // CHECK : 08.11.2022 nie wiem jak zrobić bez dodawania dodatkowej tablicy
+    @Override // CHECK : 16.11.2022 sprwadzić
     public void add(int index, T element) {
-        T[] aditionalTab = (T[]) new Object[tab.length + 1];
-        boolean wasAdd = false;
-        int tabIter = 0;
-        for (int i = 0; i < aditionalTab.length; i++) {
-            if (i != index || wasAdd) {
-                aditionalTab[i] = tab[tabIter];
-                tabIter++;
+        for (int i = size; i >= 0; i--) {
+            if (i > index) {
+                tab[i + 1] = tab[i];
             } else {
-                aditionalTab[i] = element;
-                wasAdd = true;
+                tab[i + 1] = tab[i];
+                tab[i] = element;
+                size++;
+                return;
             }
         }
-        tab = aditionalTab;
     }
 
-    @Override // TODO: 03.11.2022 zmienić tak jak wyżej
-    // CHECK : 08.11.2022 jeżeli zorobię bez dodatkowej tablicy to na końcu zostanie null
+    @Override // CHECK : 16.11.2022 sprawdzić
     public T remove(int index) {
-        T removed = null;
-        int aditionalTabIter = 0;
-        T[] aditionalTab = (T[]) new Object[tab.length - 1];
-        for (int i = 0; i < tab.length; i++) {
-            if (i != index) {
-                aditionalTab[aditionalTabIter] = tab[i];
-                aditionalTabIter++;
-            } else {
-                removed = tab[i];
+        T removed = tab[index];
+        size--;
+        for (int i = 0; i < size; i++) {
+            if (i >= index) {
+                tab[i] = tab[i + 1];
             }
         }
-        tab = aditionalTab;
         return removed;
     }
 
