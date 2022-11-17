@@ -44,34 +44,21 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
-    public boolean add(T t) {// CHECK : 15.11.2022 w wersji wyszarzonej nie działało. Czy teraz jest dobrze?
-        /*for (int i = 0; i < tab.length; i++) {
+    public boolean add(T t) {
+        for (int i = 0; i < tab.length; i++) {
             if (tab[i] == null) {
                 tab[i] = t;
                 size++;
-                return true;// jeżeli znajdzie nulla to następny if się nie wykona i tablica nie zostanie zwiększona
+                break;
             }
         }
+
         if (tab.length == size) {
             T[] additionalTab = (T[]) new Object[tab.length * 2];
             for (int i = 0; i < tab.length; i++) {
                 additionalTab[i] = tab[i];
             }
             tab = additionalTab;
-        }
-        return true;*/
-
-        T[] additionalTab = (T[]) new Object[tab.length * 2];
-        for (int i = 0; i < tab.length; i++) {
-            if (tab[i] == null) {
-                tab[i] = t;
-                size++;
-                if (tab.length == size) {
-                    System.arraycopy(tab, 0, additionalTab, 0, tab.length);
-                    tab = additionalTab;
-                }
-                return true;
-            }
         }
         return true;
     }
