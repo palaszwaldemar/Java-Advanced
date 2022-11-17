@@ -9,12 +9,13 @@ public class MyArrayListDemo {
         List<String> text = new ArrayList<>();
         List<String> text1 = new MyArrayList<>();
         text1.add("kot");
+        text1.add("osa");
         text.add("pies");
         text.add("lis");
         text.add("osa");
         text.add(null);
-        System.out.println(text1.get(0));
-        System.out.println(text.get(0));
+        //System.out.println(text1.get(0));
+        //System.out.println(text.get(0));
         for (String s : text1) {
             System.out.println(s);
         }
