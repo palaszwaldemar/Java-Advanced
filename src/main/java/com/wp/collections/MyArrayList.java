@@ -139,6 +139,9 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public T remove(int index) {
+        if (index < 0 || index >= size) {
+            return null;
+        }
         T removed = tab[index];
         size--;
         for (int i = 0; i < size; i++) {
