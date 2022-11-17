@@ -16,7 +16,7 @@ public class MyArrayList<T> implements List<T> {
         return size == 0;
     }
 
-    @Override // CHECK : 16.11.2022 sprawdzić
+    @Override
     public boolean contains(Object o) {
         for (int i = 0; i < size; i++) {
             if (tab[i].equals(o)) {
@@ -26,12 +26,12 @@ public class MyArrayList<T> implements List<T> {
         return false;
     }
 
-    @Override // TODO: 15.11.2022 dokończyć
+    @Override
     public Iterator<T> iterator() {
         return null;
     }
 
-    @Override // CHECK : 16.11.2022 sprawdzić
+    @Override
     public Object[] toArray() {
         Object[] aditionalTab = new Object[size];
         System.arraycopy(tab, 0, aditionalTab, 0, size);
@@ -76,7 +76,7 @@ public class MyArrayList<T> implements List<T> {
         return true;
     }
 
-    @Override // CHECK : 16.11.2022 sprwadzić
+    @Override
     public boolean remove(Object o) {
         size--;
         boolean wasAdd = false;
@@ -128,7 +128,7 @@ public class MyArrayList<T> implements List<T> {
         size = 0;
     }
 
-    @Override // CHECK : 16.11.2022 dodano rzucenie wyjątku
+    @Override
     public T get(int index) {
         if (tab[index] != null) {
             return tab[index];
@@ -143,7 +143,7 @@ public class MyArrayList<T> implements List<T> {
         return previousElement;
     }
 
-    @Override // CHECK : 16.11.2022 sprwadzić
+    @Override
     public void add(int index, T element) {
         for (int i = size; i >= 0; i--) {
             if (i > index) {
@@ -157,7 +157,7 @@ public class MyArrayList<T> implements List<T> {
         }
     }
 
-    @Override // CHECK : 16.11.2022 sprawdzić
+    @Override
     public T remove(int index) {
         T removed = tab[index];
         size--;
