@@ -28,7 +28,7 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new MyIterator<>(this);
     }
 
     @Override
