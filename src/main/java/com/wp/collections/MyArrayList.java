@@ -34,6 +34,7 @@ public class MyArrayList<T> implements List<T> {
     @Override
     public Object[] toArray() {
         Object[] aditionalTab = new Object[size];
+       //return Arrays.copyOf(tab,size);
         System.arraycopy(tab, 0, aditionalTab, 0, size);
         return aditionalTab;
     }
