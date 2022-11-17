@@ -65,14 +65,7 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean remove(Object o) {
-        size--;
-        boolean wasAdd = false;
-        for (int i = 0; i < size; i++) {
-            if (tab[i].equals(o) || wasAdd) {
-                tab[i] = tab[i + 1];
-                wasAdd = true;
-            }
-        }
+        remove(indexOf(o));
         return true;
     }
 
