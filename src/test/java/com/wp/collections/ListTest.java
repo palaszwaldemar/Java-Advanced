@@ -171,6 +171,12 @@ public class ListTest {
         Assertions.assertEquals(10, elements.indexOf("10"));
         Assertions.assertEquals(14, elements.indexOf("14"));
         Assertions.assertEquals(-1, elements.indexOf("50"));
+
+        elements.clear();
+
+        addDifferentElementsToList(1);
+        Assertions.assertEquals(0, elements.indexOf("0"));
+        Assertions.assertEquals(-1, elements.indexOf("1"));
     }
 
     @Test
