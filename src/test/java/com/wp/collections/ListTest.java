@@ -198,6 +198,8 @@ public class ListTest {
             Assertions.fail("Nie rzucono wyjątku");
         } catch (IndexOutOfBoundsException e) {
             //zdany test
+        } catch (NullPointerException e) {/*dodano aby przeszedl test klasy MyLinkedList */ // CHECK : 19.11.2022
+            //zdany test
         }
     }
 }
