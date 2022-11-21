@@ -1,7 +1,7 @@
 package com.wp.collections;
 
 public class MyNode<T> {
-    private T object;
+    private final T object;
     private MyNode<T> nextMyNode;
 
     public MyNode(T object) {
@@ -20,7 +20,7 @@ public class MyNode<T> {
         return nextMyNode;
     }
 
-    public boolean isLast() {
-        return nextMyNode == null;
+    public boolean isNotLast() {
+        return nextMyNode != null; // CHECK : 19.11.2022 zmieniłem na "!=" z "==" bo tak podpowiedział intellij, dlaczego?
     }
 }
