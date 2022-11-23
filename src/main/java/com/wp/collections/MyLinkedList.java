@@ -134,12 +134,11 @@ public class MyLinkedList<T> implements List<T> {
                 myNode.setNextMyNode(myNodeToAdd);
                 myNodeToAdd.setNextMyNode(aditionalMyNode);
                 return;
-            } else {
-                myNode = myNode.getNextMyNode();
             }
+            myNode = myNode.getNextMyNode();
             count++;
         }
-        // TODO: 20.11.2022 dodać instrukcje w przypadku gdy myNode jest ostatnie lub lista jest jedno elementowa
+        // TODO: 20.11.2022 dodać instrukcje w przypadku gdy myNode jest ostatnie lub lista jest jednoelementowa
     }
 
     @Override // CHECK : 19.11.2022

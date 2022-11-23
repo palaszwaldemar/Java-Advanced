@@ -42,6 +42,11 @@ public class ListTest1 {
 
         Assertions.assertEquals("55", elements.get(elements.size() - 1));
 
+        /*addDifferentElementsToList(1);
+        elements.add(0, "12");
+        Assertions.assertEquals("12",elements.get(0));
+        Assertions.assertEquals("0",elements.get(1));*/
+
     }
 
     @Test
