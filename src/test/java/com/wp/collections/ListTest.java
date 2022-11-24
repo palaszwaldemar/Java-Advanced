@@ -128,10 +128,12 @@ public class ListTest {
     @Test
     public void setShouldSetObjectInSpecificIndex() {
 
-        addManyTheSameElementsToList(10);
+        addDifferentElementsToList(10);
 
-        Assertions.assertEquals("0", elements.set(3, "50"));
+        Assertions.assertEquals("3", elements.set(3, "50"));
         Assertions.assertEquals("50", elements.get(3));
+        Assertions.assertEquals("2", elements.get(2));
+        Assertions.assertEquals("4", elements.get(4));
     }
 
     @Test
