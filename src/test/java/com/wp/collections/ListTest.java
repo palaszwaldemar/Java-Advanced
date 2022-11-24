@@ -150,6 +150,16 @@ public class ListTest {
         Assertions.assertEquals("5", elements.get(6));
         Assertions.assertEquals("0", elements.get(0));
         Assertions.assertEquals("9", elements.get(elements.size() - 1));
+
+        elements.add(9,"55");
+
+        Assertions.assertEquals("55", elements.get(elements.size() - 1));// CHECK : 23.11.2022 dlaczego nie zdaje testu przy zwykłej arrayLiście?
+
+        elements.clear();
+        addDifferentElementsToList(1);
+        elements.add(0, "12");
+        Assertions.assertEquals("12",elements.get(0));
+        Assertions.assertEquals("0",elements.get(1));
     }
 
     @Test
