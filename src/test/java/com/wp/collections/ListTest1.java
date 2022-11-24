@@ -23,45 +23,13 @@ public class ListTest1 {
     }
 
     @Test
-    public void addShouldAddElementOnSpecificPosition() {
+    public void setShouldSetObjectInSpecificIndex() {
 
         addDifferentElementsToList(10);
 
-        elements.add(5, "100");
-        //
-        Object[] tab1 = elements.toArray(); // CHECK : 20.11.2022 dlaczego tab1 nie może być typu String?
-        //
-
+        Assertions.assertEquals("3", elements.set(3, "50"));
+        Assertions.assertEquals("50", elements.get(3));
+        Assertions.assertEquals("2", elements.get(2));
         Assertions.assertEquals("4", elements.get(4));
-        Assertions.assertEquals("100", elements.get(5));
-        Assertions.assertEquals("5", elements.get(6));
-        Assertions.assertEquals("0", elements.get(0));
-        Assertions.assertEquals("9", elements.get(elements.size() - 1));
-
-        elements.add(9,"55");
-
-        Assertions.assertEquals("55", elements.get(elements.size() - 1));
-
-        /*addDifferentElementsToList(1);
-        elements.add(0, "12");
-        Assertions.assertEquals("12",elements.get(0));
-        Assertions.assertEquals("0",elements.get(1));*/
-
     }
-
-    @Test
-    public void removeShouldDeleteElementOnSpecificIndex() {
-
-        addDifferentElementsToList(20);
-
-        Assertions.assertEquals("19", elements.remove(19));
-        Assertions.assertEquals("5", elements.remove(5));
-        Assertions.assertEquals("0", elements.remove(0));
-        Assertions.assertEquals(17, elements.size());
-        Assertions.assertEquals("18", elements.get(elements.size() - 1));
-        Assertions.assertEquals("7", elements.get(5));
-        Assertions.assertEquals("1", elements.get(0));
-    }
-
-
 }
