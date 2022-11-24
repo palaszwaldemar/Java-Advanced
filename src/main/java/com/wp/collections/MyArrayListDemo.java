@@ -26,6 +26,16 @@ public class MyArrayListDemo {
             System.out.print(iterator.next() + " ");
         }
 */
+        List<String> myLinkedList = new MyLinkedList<>();
+        myLinkedList.add("kot");
+        myLinkedList.add("pies");
+        myLinkedList.add("mysz");
+        myLinkedList.add("szczur");
+
+        for (String s : myLinkedList) {
+            System.out.print(s + " ");
+        }
+
     }
 }
 
