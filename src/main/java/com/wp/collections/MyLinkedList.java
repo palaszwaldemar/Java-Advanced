@@ -35,9 +35,9 @@ public class MyLinkedList<T> implements List<T> {
         return actualNode.getObject().equals(o);
     }
 
-    @Override // TODO: 19.11.2022
+    @Override // CHECK : 23.11.2022
     public Iterator<T> iterator() {
-        return null;
+        return new MyIteratorLinkedList<>(this);
     }
 
     @Override // CHECK : 17.11.2022
@@ -118,12 +118,24 @@ public class MyLinkedList<T> implements List<T> {
         head = null;
     }
 
-    @Override // TODO: 18.11.2022 dokończyć
+    @Override // CHECK : 23.11.2022 nie działa. nie mam pomysłu jak zrobić
     public T set(int index, T element) {
-        return null;
+        MyNode<T> myNode = head;
+        MyNode<T> myNodeToSet = new MyNode<>(element);
+        if (index == 0) {
+            head = myNodeToSet;
+            return myNode.getObject();
+        }
+        for (int i = 0; i < index - 1; i++) {//pętla, która iteruje do elementu poprzedzającego element do usunięcia
+            myNode = myNode.getNextMyNode();
+        }
+        MyNode<T> myNodeToDelete = myNode.getNextMyNode();
+        myNode.setNextMyNode(myNodeToSet);
+        myNodeToSet.setNextMyNode(myNode.getNextMyNode().getNextMyNode());
+        return myNodeToDelete.getObject();
     }
 
-    @Override // TODO: 19.11.2022
+    @Override
     public void add(int index, T element) {
         MyNode<T> myNode = head;
         MyNode<T> myNodeToAdd = new MyNode<>(element);
@@ -138,37 +150,26 @@ public class MyLinkedList<T> implements List<T> {
             myNode = myNode.getNextMyNode();
             count++;
         }
-        // TODO: 20.11.2022 dodać instrukcje w przypadku gdy myNode jest ostatnie lub lista jest jednoelementowa
+        // CHECK : 23.11.2022 nie wiem jak dodać warunek w przypadku gdy lista jest jednoelementowa lub gdy myNode jest ostatni
     }
 
     @Override // CHECK : 19.11.2022
     public T remove(int index) {
         MyNode<T> myNode = head;
-        int count = 0;
-        MyNode<T> myNodeToDelete = myNode;
-        while (myNode.isNotLast()) {
-            if (count == index - 1) {
-                myNodeToDelete = myNode.getNextMyNode();
-                MyNode<T> secondMyNode = myNode.getNextMyNode();
-                myNode.setNextMyNode(secondMyNode);
-            }
-            myNode = myNode.getNextMyNode();
-            count++;
-        }
-        /*if (index == 0) {
+        if (index == 0) {
             head = myNode.getNextMyNode();
             return myNode.getObject();
         }
         for (int i = 0; i < index - 1; i++) {//pętla, która iteruje do elementu poprzedzającego element do usunięcia
             myNode = myNode.getNextMyNode();
         }
-        MyNode<T> deletedMyNode = myNode.getNextMyNode();
-        MyNode<T> secondMyNode = myNode;
+        MyNode<T> myNodeToDelete = myNode.getNextMyNode();
+        MyNode<T> myNodeNextAfterMyNodeToDelete = myNode;
         for (int i = 0; i < 2; i++) {//pętla, ktora iteruje (od elementu poprzedzającego element do usunięcia) do
-            //elementu nastęnego po elemencie do usunięcia
-            secondMyNode = secondMyNode.getNextMyNode();
+                                    //elementu nastęnego po elemencie do usunięcia
+            myNodeNextAfterMyNodeToDelete = myNodeNextAfterMyNodeToDelete.getNextMyNode();
         }
-        myNode.setNextMyNode(secondMyNode);*/
+        myNode.setNextMyNode(myNodeNextAfterMyNodeToDelete);
         return myNodeToDelete.getObject();
     }
 
