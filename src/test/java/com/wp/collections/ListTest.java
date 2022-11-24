@@ -143,6 +143,8 @@ public class ListTest {
 
         elements.add(5, "100");
 
+        Object[] tab1 = elements.toArray(); // CHECK : 20.11.2022 dlaczego tab1 nie może być typu String?
+
         Assertions.assertEquals("4", elements.get(4));
         Assertions.assertEquals("100", elements.get(5));
         Assertions.assertEquals("5", elements.get(6));
