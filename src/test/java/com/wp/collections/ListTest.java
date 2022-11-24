@@ -143,17 +143,15 @@ public class ListTest {
 
         elements.add(5, "100");
 
-        Object[] tab1 = elements.toArray(); // CHECK : 20.11.2022 dlaczego tab1 nie może być typu String?
-
         Assertions.assertEquals("4", elements.get(4));
         Assertions.assertEquals("100", elements.get(5));
         Assertions.assertEquals("5", elements.get(6));
         Assertions.assertEquals("0", elements.get(0));
         Assertions.assertEquals("9", elements.get(elements.size() - 1));
 
-        elements.add(9,"55");
+        elements.add(10,"55");
 
-        Assertions.assertEquals("55", elements.get(elements.size() - 1));// CHECK : 23.11.2022 dlaczego nie zdaje testu przy zwykłej arrayLiście?
+        Assertions.assertEquals("55", elements.get(elements.size() - 2));
 
         elements.clear();
         addDifferentElementsToList(1);
@@ -210,9 +208,7 @@ public class ListTest {
         try {
             elements.get(10);
             Assertions.fail("Nie rzucono wyjątku");
-        } catch (IndexOutOfBoundsException e) {
-            //zdany test
-        } catch (NullPointerException e) {/*dodano aby przeszedl test klasy MyLinkedList */ // CHECK : 19.11.2022
+        } catch (IndexOutOfBoundsException | NullPointerException  e ) {
             //zdany test
         }
     }

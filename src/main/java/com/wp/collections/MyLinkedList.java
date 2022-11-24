@@ -2,11 +2,10 @@ package com.wp.collections;
 
 import java.util.*;
 
-// CHECK : 19.11.2022 jak działa debugger?
 public class MyLinkedList<T> implements List<T> {
     private MyNode<T> head;//firstNode
 
-    @Override // CHECK : 09.11.2022
+    @Override
     public int size() {
         int count = 0;
         MyNode<T> actualNode = head;
@@ -18,12 +17,12 @@ public class MyLinkedList<T> implements List<T> {
         return count;
     }
 
-    @Override // CHECK : 09.11.2022
+    @Override
     public boolean isEmpty() {
         return head == null;
     }
 
-    @Override // CHECK : 18.11.2022
+    @Override
     public boolean contains(Object o) {
         MyNode<T> actualNode = head;
         while (actualNode.isNotLast()) {
@@ -35,12 +34,12 @@ public class MyLinkedList<T> implements List<T> {
         return actualNode.getObject().equals(o);
     }
 
-    @Override // CHECK : 23.11.2022
+    @Override
     public Iterator<T> iterator() {
         return new MyIteratorLinkedList<>(this);
     }
 
-    @Override // CHECK : 17.11.2022
+    @Override
     public Object[] toArray() {
         Object[] array = new Object[size()];
         int indexOfArray = 0;
@@ -59,7 +58,7 @@ public class MyLinkedList<T> implements List<T> {
         return null;
     }
 
-    @Override // CHECK : 17.11.2022
+    @Override
     public boolean add(T t) {
         if (head == null) {
             head = new MyNode<>(t);
@@ -73,7 +72,7 @@ public class MyLinkedList<T> implements List<T> {
         return true;
     }
 
-    @Override // CHECK : 17.11.2022
+    @Override
     public T get(int index) {
         MyNode<T> actualNode = head;
         for (int i = 0; i < index; i++) {
@@ -82,7 +81,7 @@ public class MyLinkedList<T> implements List<T> {
         return actualNode.getObject();
     }
 
-    @Override // CHECK : 19.11.2022
+    @Override
     public boolean remove(Object o) {
         remove(indexOf(o));
         return true;
@@ -113,67 +112,60 @@ public class MyLinkedList<T> implements List<T> {
         return false;
     }
 
-    @Override // CHECK : 17.11.2022
+    @Override
     public void clear() {
         head = null;
     }
 
-    @Override // CHECK : 23.11.2022 nie działa. nie mam pomysłu jak zrobić
+    @Override
     public T set(int index, T element) {
-        MyNode<T> myNode = head;
-        MyNode<T> myNodeToSet = new MyNode<>(element);
-        if (index == 0) {
-            head = myNodeToSet;
-            return myNode.getObject();
+        if (index < 0 || index >= size()) {
+            return null;
         }
-        for (int i = 0; i < index - 1; i++) {//pętla, która iteruje do elementu poprzedzającego element do usunięcia
-            myNode = myNode.getNextMyNode();
+        MyNode<T> actualNode = head;
+        for (int i = 0; i < index; i++) {
+            actualNode = actualNode.getNextMyNode();
         }
-        MyNode<T> myNodeToDelete = myNode.getNextMyNode();
-        myNode.setNextMyNode(myNodeToSet);
-        myNodeToSet.setNextMyNode(myNode.getNextMyNode().getNextMyNode());
-        return myNodeToDelete.getObject();
+        T oldElement = actualNode.getObject();
+        actualNode.setObject(element);
+        return oldElement;
     }
 
     @Override
     public void add(int index, T element) {
         MyNode<T> myNode = head;
         MyNode<T> myNodeToAdd = new MyNode<>(element);
-        int count = 0;
-        while (myNode.isNotLast()) {
-            if (count == index - 1) {
-                MyNode<T> aditionalMyNode = myNode.getNextMyNode();
-                myNode.setNextMyNode(myNodeToAdd);
-                myNodeToAdd.setNextMyNode(aditionalMyNode);
-                return;
-            }
-            myNode = myNode.getNextMyNode();
-            count++;
+        if (index == 0) {
+            myNode.setNextMyNode(head);
+            head = myNodeToAdd;
         }
-        // CHECK : 23.11.2022 nie wiem jak dodać warunek w przypadku gdy lista jest jednoelementowa lub gdy myNode jest ostatni
+        for (int i = 0; i < index - 1; i++) {//pętla, która iteruje do elementu poprzedzającego element do usunięcia
+            myNode = myNode.getNextMyNode();
+        }
+        MyNode<T> myNodeAfterNodeToAdd = myNode.getNextMyNode();
+        myNode.setNextMyNode(myNodeToAdd);
+        myNodeToAdd.setNextMyNode(myNodeAfterNodeToAdd);
     }
 
-    @Override // CHECK : 19.11.2022
+    @Override
     public T remove(int index) {
         MyNode<T> myNode = head;
         if (index == 0) {
             head = myNode.getNextMyNode();
             return myNode.getObject();
         }
+
         for (int i = 0; i < index - 1; i++) {//pętla, która iteruje do elementu poprzedzającego element do usunięcia
             myNode = myNode.getNextMyNode();
         }
+        MyNode<T> myNodeBeforeNodeToDelete = myNode;
         MyNode<T> myNodeToDelete = myNode.getNextMyNode();
-        MyNode<T> myNodeNextAfterMyNodeToDelete = myNode;
-        for (int i = 0; i < 2; i++) {//pętla, ktora iteruje (od elementu poprzedzającego element do usunięcia) do
-                                    //elementu nastęnego po elemencie do usunięcia
-            myNodeNextAfterMyNodeToDelete = myNodeNextAfterMyNodeToDelete.getNextMyNode();
-        }
-        myNode.setNextMyNode(myNodeNextAfterMyNodeToDelete);
+
+        myNodeBeforeNodeToDelete.setNextMyNode(myNodeToDelete.getNextMyNode());
         return myNodeToDelete.getObject();
     }
 
-    @Override // CHECK : 19.11.2022
+    @Override
     public int indexOf(Object o) {
         int index = 0;
         MyNode<T> myNode = head;

@@ -2,7 +2,7 @@ package com.wp.collections;
 
 import java.util.Iterator;
 
-public class MyIteratorArray<T> implements Iterator<T> {// CHECK : 19.11.2022 jak działa ta klasa?
+public class MyIteratorArray<T> implements Iterator<T> {
     private final MyArrayList<T> myArrayList;
     private int index;
 
