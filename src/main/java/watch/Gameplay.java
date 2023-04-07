@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Gameplay {
+    WatchDisplay watchDisplay = new WatchDisplay();
 
     public Gameplay() {
     }
@@ -13,9 +14,6 @@ public class Gameplay {
     }
 
     public void render(Graphics g) {
+        watchDisplay.render(g);
     }
 }
-
-//drukuje sie pozycja x, y która została kliknieta
-//wstawia sie tile w pozycje x, y
-//można wstawiac tylko w te miescja przylegajace
